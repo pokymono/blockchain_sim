@@ -3,7 +3,7 @@ from blockchain import Blockchain, Block
 from datetime import datetime
 import time
 import json
-from transactions import create_dummy_transactions, get_tampered_transaction, get_additional_transaction
+from transactions import create_dummy_transactions, get_tampered_transaction, get_additional_transaction, get_user_transaction
 from tamper import tamper_blockchain
 
 def print_blockchain_state(blockchain, title):
@@ -23,9 +23,25 @@ def main():
     print("Initializing blockchain with custom SHA-256 implementation...")
     my_blockchain = Blockchain()
     
-    # Getting transactions from transactions.py
-    print("\nFetching transactions from transactions module...")
-    transactions = create_dummy_transactions()
+    # Ask user if they want to use dummy transactions or input their own
+    print("\nDo you want to use dummy transactions or input your own?")
+    print("1. Use dummy transactions")
+    print("2. Input my own transactions")
+    
+    choice = input("Enter your choice (1 or 2): ")
+    
+    if choice == "1":
+        # Getting transactions from transactions.py
+        print("\nFetching transactions from transactions module...")
+        transactions = create_dummy_transactions()
+    else:
+        # Get transactions from user input
+        transactions = []
+        while True:
+            transactions.append(get_user_transaction())
+            more = input("\nAdd another transaction? (yes/no): ").lower()
+            if more != "yes" and more != "y":
+                break
     
     # Adding transactions to the blockchain
     print("\nAdding transactions to the blockchain:")
