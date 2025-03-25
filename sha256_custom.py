@@ -267,8 +267,29 @@ for chunk in chunks:
 '''
 
 #PART 5
-# THE SHA-256 
-def sha256(message): 
+# Adding caching to improve performance of the SHA-256 implementation
+
+# Create a simple cache for the sha256 function
+_sha256_cache = {}
+_cache_size_limit = 1000  # Limit cache size to prevent memory issues
+
+def sha256(message):
+    # Check if result is already in cache
+    if message in _sha256_cache:
+        return _sha256_cache[message]
+    
+    # If cache is too large, clear it
+    if len(_sha256_cache) > _cache_size_limit:
+        _sha256_cache.clear()
+    
+    # Compute hash using the original implementation
+    result = _sha256_impl(message)
+    
+    # Store in cache
+    _sha256_cache[message] = result
+    return result
+
+def _sha256_impl(message):
     k = initializer(k_k)
     h0, h1, h2, h3, h4, h5, h6, h7 = initializer(h_hex)
     chunks = preprocessMessage(message)
@@ -315,6 +336,3 @@ def sha256(message):
     for val in [h0, h1, h2, h3, h4, h5, h6, h7]:
         digest += b2Tob16(val)
     return digest
-
-finalstr = input()
-print(sha256(finalstr))
