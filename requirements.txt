@@ -1,0 +1,2 @@
+# No external dependencies are required
+# This file is included for Docker build consistency and future extensions

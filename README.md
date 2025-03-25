@@ -57,7 +57,10 @@ git clone https://github.com/pokymono/blockchain_sim.git
 cd blockchain_sim
 ```
 
-2. No external dependencies are required as the project uses only Python standard libraries.
+2. No external dependencies are required as the project uses only Python standard libraries. A requirements.txt file is included for completeness and future extensions.
+```
+pip install -r requirements.txt  # Optional, as no external dependencies are needed
+```
 
 ### Option 2: Using Docker
 
