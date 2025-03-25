@@ -49,6 +49,8 @@ The integrity of the blockchain is maintained by:
 
 ## Installation
 
+### Option 1: Standard Installation
+
 1. Clone this repository:
 ```
 git clone https://github.com/pokymono/blockchain_sim.git
@@ -56,6 +58,26 @@ cd blockchain_sim
 ```
 
 2. No external dependencies are required as the project uses only Python standard libraries.
+
+### Option 2: Using Docker
+
+If you have Docker installed, you can run the blockchain simulation without installing anything else:
+
+1. Clone this repository:
+```
+git clone https://github.com/pokymono/blockchain_sim.git
+cd blockchain_sim
+```
+
+2. Build the Docker image:
+```
+docker build -t blockchain-sim .
+```
+
+3. Run the container:
+```
+docker run -it blockchain-sim
+```
 
 ## Usage
 
@@ -66,6 +88,8 @@ To run the blockchain simulation:
 ```
 python main.py
 ```
+
+If using Docker, the simulation will start automatically when you run the container.
 
 ### Interactive Options
 
